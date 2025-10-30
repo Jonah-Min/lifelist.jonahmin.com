@@ -36,7 +36,7 @@ export default function LifeList() {
             <WebsiteHeader />
             <span className="life-list-container">
                 <span className="life-list-left">
-                    <h2>Life List</h2>
+                    <h2>My Bird Watching Life List!</h2>
                     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                         <TableContainer sx={{ maxHeight: '80vh' }} >
                             <Table stickyHeader aria-label="simple table" size="small">
