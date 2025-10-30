@@ -1,0 +1,45 @@
+.life-list {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.life-list-container {
+    display: flex;
+    align-items: start;
+    flex-direction: row;
+}
+
+.life-list-container h2 {
+    text-align: left;
+}
+
+.life-list-left {
+    display: flex; 
+    flex-direction: column;
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.life-list-right {
+    display: flex; 
+    flex-direction: column;
+    flex-grow: 1;
+    flex-basis: 0;
+    align-items: center;
+}
+
+.life-list-right h2 {
+    text-align: center;
+}
+
+.img-responsive {
+    max-width: 100%;
+    padding: 40px 0 40px 0;
+}
+
+.world-map {
+    background-color: #abd5df;
+    border-radius: 5px;
+    width: 80%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}

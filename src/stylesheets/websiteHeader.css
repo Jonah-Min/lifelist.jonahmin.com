@@ -1,0 +1,9 @@
+.website-header {
+  width: 75%;
+  margin: 35px 0;
+  display: inline-block;
+  font-size: 42px;
+  letter-spacing: 3px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
