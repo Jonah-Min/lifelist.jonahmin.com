@@ -8,6 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Zoom from 'react-medium-image-zoom';
 
 import '../stylesheets/lifelist.css';
 
@@ -20,7 +21,6 @@ export default function LifeList() {
 
     const lifeListArray = lifeListData ?
         lifeListData.split('\r\n').slice(1).map(entry => {
-            console.log({ entry });
             const row = entry.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
             return {
                 number: row[0],
@@ -37,22 +37,22 @@ export default function LifeList() {
             <span className="life-list-container">
                 <span className="life-list-left">
                     <h2>My Bird Watching Life List!</h2>
-                    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-                        <TableContainer sx={{ maxHeight: '80vh' }} >
+                    <Paper >
+                        <TableContainer sx={{ maxHeight: '85vh' }} >
                             <Table stickyHeader aria-label="simple table" size="small">
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell style={{ color: 'white', backgroundColor: "#333" }}>No.</TableCell>
-                                        <TableCell style={{ color: 'white', backgroundColor: "#555" }}>Name</TableCell>
-                                        <TableCell style={{ color: 'white', backgroundColor: "#333" }}>Date</TableCell>
-                                        <TableCell style={{ color: 'white', backgroundColor: "#555" }}>Location</TableCell>
+                                        <TableCell style={{ color: 'white', backgroundColor: "#333" }}><b>No.</b></TableCell>
+                                        <TableCell style={{ color: 'white', backgroundColor: "#555" }}><b>Name</b></TableCell>
+                                        <TableCell style={{ color: 'white', backgroundColor: "#333" }}><b>Date</b></TableCell>
+                                        <TableCell style={{ color: 'white', backgroundColor: "#555" }}><b>Location</b></TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
                                     {lifeListArray.map(({ number, name, date, location }, index) => (
                                         <TableRow style={{ backgroundColor: index % 2 === 0 ? '#eeeeeeff' : '' }} key={name}>
                                             <TableCell component="th" scope="row">{number}</TableCell>
-                                            <TableCell >{name}</TableCell>
+                                            <TableCell ><b>{name}</b></TableCell>
                                             <TableCell >{date.replaceAll('"', '')}</TableCell>
                                             <TableCell style={{ overflow: 'scroll' }} >{location.replaceAll('"', '')}</TableCell>
                                         </TableRow>
@@ -65,12 +65,14 @@ export default function LifeList() {
                 <span className="life-list-right">
                     {/* Todo add cool underlines */}
                     <h2>My Bird Watching Destinations</h2>
+
                     <div className="world-map">
                         <img title="Blank SVG World Map" alt="SVG World Map Using Robinson Projection" src="/world.svg" className="img-responsive" />
                     </div>
+
                 </span>
             </span>
-        </span>
+        </span >
     );
 
 }

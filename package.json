@@ -5,7 +5,7 @@
   "type": "module",
   "homepage": "https://lifelist.jonahmin.com",
   "scripts": {
-    "predeploy" : "npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist --cname 'lifelist.jonahmin.com'",
     "dev": "vite",
     "build": "vite build",
