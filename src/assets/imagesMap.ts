@@ -254,4 +254,5 @@ export default {
   "americandipper": "/birdPhotos/americandipper.jpg",
   "greaterscaup": "/birdPhotos/greaterscaup.jpg",
   "littleblueheron": "/birdPhotos/littleblueheron.jpg",
+  "westerngull": "/birdPhotos/westerngull.jpg",
 };
