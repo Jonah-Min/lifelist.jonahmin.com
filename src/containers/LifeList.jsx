@@ -14,6 +14,7 @@ import '../stylesheets/lifelist.css';
 
 export default function LifeList() {
     const [lifeListData, setLifeList] = useState();
+    const [ebirdCodeData, setEbirdCodeData] = useState();
     const [zoomWorldMap, setZoomWorldMap] = useState(false);
 
     fetch('/LifeList.csv')
@@ -32,6 +33,20 @@ export default function LifeList() {
         })
         : [];
 
+    fetch('/eBirdBirdCodes.csv')
+        .then(response => response.text())
+        .then(responseText => setEbirdCodeData(responseText));
+
+    const birdCodesMap = ebirdCodeData ?
+        ebirdCodeData.split('\r\n').slice(1).reduce((acc, entry) => {
+            const row = entry.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+            const [birdName, birdCode] = row;
+            acc[birdName.replaceAll(/[^\w]/g, "").toLowerCase()] = birdCode;
+            return acc;
+        }, {})
+        : {};
+
+
     return (
         <>
             {zoomWorldMap &&
@@ -48,7 +63,7 @@ export default function LifeList() {
                     <span className="life-list-left">
                         <h2>My Bird Watching Life List!</h2>
                         <Paper >
-                            <TableContainer sx={{ maxHeight: '85vh' }} >
+                            <TableContainer sx={{ maxHeight: '85vh', borderRadius: "5px" }} >
                                 <Table stickyHeader aria-label="simple table" size="small">
                                     <TableHead>
                                         <TableRow>
@@ -59,14 +74,27 @@ export default function LifeList() {
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {lifeListArray.map(({ number, name, date, location }, index) => (
-                                            <TableRow style={{ backgroundColor: index % 2 === 0 ? '#eeeeeeff' : '' }} key={name}>
-                                                <TableCell component="th" scope="row">{number}</TableCell>
-                                                <TableCell ><b>{name}</b></TableCell>
-                                                <TableCell >{date.replaceAll('"', '')}</TableCell>
-                                                <TableCell style={{ overflow: 'scroll' }} >{location.replaceAll('"', '')}</TableCell>
-                                            </TableRow>
-                                        ))}
+                                        {lifeListArray.map(({ number, name, date, location }, index) => {
+                                            let birdName = <b>{name}</b>;
+
+                                            const birdKey = name.replaceAll(/[^\w]/g, "").toLowerCase();
+                                            if (birdCodesMap[birdKey]) {
+                                                birdName = (
+                                                    <a className="bird-link" href={`https://ebird.org/species/${birdCodesMap[birdKey]}`} target='_blank'>
+                                                        {birdName}
+                                                    </a>
+                                                );
+                                            }
+
+                                            return (
+                                                <TableRow style={{ backgroundColor: index % 2 === 0 ? '#eeeeeeff' : '' }} key={name}>
+                                                    <TableCell component="th" scope="row">{number}</TableCell>
+                                                    <TableCell >{birdName}</TableCell>
+                                                    <TableCell >{date.replaceAll('"', '')}</TableCell>
+                                                    <TableCell style={{ overflow: 'scroll' }} >{location.replaceAll('"', '')}</TableCell>
+                                                </TableRow>
+                                            );
+                                        })}
                                     </TableBody>
                                 </Table>
                             </TableContainer>

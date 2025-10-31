@@ -85,6 +85,14 @@
     z-index: 10000;
 }
 
+.bird-link {
+    color: #000;
+}
+
+.bird-link:hover {
+    color: #717171;
+}
+
 @media (max-width: 850px) {
     .life-list {
         padding: 0 2% 5% 2%;
