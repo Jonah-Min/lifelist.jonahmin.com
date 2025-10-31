@@ -120,9 +120,14 @@
     color: #717171;
 }
 
+.bird-table {
+    max-height: 82vh;
+    border-radius: 5px;
+}
+
 @media (max-width: 850px) {
     .life-list {
-        padding: 0 2% 5% 2%;
+        padding: 0 2% 0 2%;
     }
 
     body {
