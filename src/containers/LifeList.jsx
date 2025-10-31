@@ -77,7 +77,7 @@ export default function LifeList() {
                         <h2>My Bird Watching Destinations</h2>
 
                         <div className='world-map' onClick={() => setZoomWorldMap(true)}>
-                            <img title="Blank SVG World Map" alt="SVG World Map Using Robinson Projection" src="/world.svg" className="img-responsive" />
+                            <img title="Bird Watching World Map" alt="Bird Watching Destinations World Map" src="/world.svg" className="img-responsive" />
                         </div>
 
                     </span>
