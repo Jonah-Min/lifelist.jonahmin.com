@@ -116,20 +116,10 @@
         display: flex; 
         flex-direction: column;
         width: 100%;
-    }
-
-    .life-list-right {
-        display: flex; 
-        flex-direction: column;
-        width: 100%;
         align-items: center;
     }
 
-    .world-map {
-        background-color: #abd5df;
-        border-radius: 5px;
-        width: 100%;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    .life-list-right {
+        display: none;
     }
-
 }

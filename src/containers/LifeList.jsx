@@ -63,7 +63,7 @@ export default function LifeList() {
                     <span className="life-list-left">
                         <h2>My Bird Watching Life List!</h2>
                         <Paper >
-                            <TableContainer sx={{ maxHeight: '85vh', borderRadius: "5px" }} >
+                            <TableContainer sx={{ maxHeight: '83vh', borderRadius: "5px" }} >
                                 <Table stickyHeader aria-label="simple table" size="small">
                                     <TableHead>
                                         <TableRow>
