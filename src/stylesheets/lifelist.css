@@ -69,6 +69,16 @@
     justify-content: center;
 }
 
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
 .beeg-background {
     background-color: #333;
     opacity: 50%;
@@ -83,6 +93,11 @@
     width: 96%;
     position: absolute;
     z-index: 10000;
+    opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: .4s;
 }
 
 .bird-link {
