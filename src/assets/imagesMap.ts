@@ -250,4 +250,8 @@ export default {
   "yellowrumpedwarbler": "/birdPhotos/yellowrumpedwarbler.jpg",
   "yellowthroatedwarbler": "/birdPhotos/yellowthroatedwarbler.jpg",
   "yellowwarbler": "/birdPhotos/yellowwarbler.jpg",
+  "americanblackduck": "/birdPhotos/americanblackduck.jpg",
+  "americandipper": "/birdPhotos/americandipper.jpg",
+  "greaterscaup": "/birdPhotos/greaterscaup.jpg",
+  "littleblueheron": "/birdPhotos/littleblueheron.jpg",
 };
