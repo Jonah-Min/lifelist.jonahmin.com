@@ -8,7 +8,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Zoom from 'react-medium-image-zoom';
+
+import BirdImages from '../assets/imagesMap';
 
 import '../stylesheets/lifelist.css';
 
@@ -46,7 +47,6 @@ export default function LifeList() {
         }, {})
         : {};
 
-
     return (
         <>
             {zoomWorldMap &&
@@ -75,9 +75,9 @@ export default function LifeList() {
                                     </TableHead>
                                     <TableBody>
                                         {lifeListArray.map(({ number, name, date, location }, index) => {
-                                            let birdName = <b>{name}</b>;
-
                                             const birdKey = name.replaceAll(/[^\w]/g, "").toLowerCase();
+
+                                            let birdName = <b>{name}</b>;
                                             if (birdCodesMap[birdKey]) {
                                                 birdName = (
                                                     <a className="bird-link" href={`https://ebird.org/species/${birdCodesMap[birdKey]}`} target='_blank'>
@@ -86,10 +86,15 @@ export default function LifeList() {
                                                 );
                                             }
 
+                                            let birdImageLink = null;
+                                            if (BirdImages[birdKey]) {
+                                                birdImageLink = <a className='bird-image' href={BirdImages[birdKey]} target="_blank">📷</a>;
+                                            }
+
                                             return (
                                                 <TableRow style={{ backgroundColor: index % 2 === 0 ? '#eeeeeeff' : '' }} key={name}>
                                                     <TableCell component="th" scope="row">{number}</TableCell>
-                                                    <TableCell >{birdName}</TableCell>
+                                                    <TableCell className="bird-name" >{birdName}{birdImageLink}</TableCell>
                                                     <TableCell >{date.replaceAll('"', '')}</TableCell>
                                                     <TableCell style={{ overflow: 'scroll' }} >{location.replaceAll('"', '')}</TableCell>
                                                 </TableRow>

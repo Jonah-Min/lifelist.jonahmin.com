@@ -104,6 +104,18 @@
     color: #000;
 }
 
+.bird-name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.bird-image {
+    margin-left: 8px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
 .bird-link:hover {
     color: #717171;
 }
