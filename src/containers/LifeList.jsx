@@ -61,7 +61,7 @@ export default function LifeList() {
                 <WebsiteHeader />
                 <span className="life-list-container">
                     <span className="life-list-left">
-                        <h2>My Bird Watching Life List!</h2>
+                        <h2>Bird Watching Life List</h2>
                         <Paper >
                             <TableContainer className="bird-table" >
                                 <Table stickyHeader aria-label="simple table" size="small">

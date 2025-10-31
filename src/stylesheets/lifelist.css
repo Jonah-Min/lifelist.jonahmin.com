@@ -136,7 +136,7 @@
 
     .life-list-container {
         display: flex;
-        align-items: start;
+        align-items: center;
         flex-direction: column;
     }
 
@@ -153,5 +153,10 @@
 
     .life-list-right {
         display: none;
+    }
+
+    .bird-table {
+        max-height: 76vh;
+        border-radius: 5px;
     }
 }
