@@ -14,6 +14,7 @@ import '../stylesheets/lifelist.css';
 
 export default function LifeList() {
     const [lifeListData, setLifeList] = useState();
+    const [zoomWorldMap, setZoomWorldMap] = useState(false);
 
     fetch('/LifeList.csv')
         .then(response => response.text())
@@ -32,47 +33,57 @@ export default function LifeList() {
         : [];
 
     return (
-        <span className="life-list">
-            <WebsiteHeader />
-            <span className="life-list-container">
-                <span className="life-list-left">
-                    <h2>My Bird Watching Life List!</h2>
-                    <Paper >
-                        <TableContainer sx={{ maxHeight: '85vh' }} >
-                            <Table stickyHeader aria-label="simple table" size="small">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell style={{ color: 'white', backgroundColor: "#333" }}><b>No.</b></TableCell>
-                                        <TableCell style={{ color: 'white', backgroundColor: "#555" }}><b>Name</b></TableCell>
-                                        <TableCell style={{ color: 'white', backgroundColor: "#333" }}><b>Date</b></TableCell>
-                                        <TableCell style={{ color: 'white', backgroundColor: "#555" }}><b>Location</b></TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {lifeListArray.map(({ number, name, date, location }, index) => (
-                                        <TableRow style={{ backgroundColor: index % 2 === 0 ? '#eeeeeeff' : '' }} key={name}>
-                                            <TableCell component="th" scope="row">{number}</TableCell>
-                                            <TableCell ><b>{name}</b></TableCell>
-                                            <TableCell >{date.replaceAll('"', '')}</TableCell>
-                                            <TableCell style={{ overflow: 'scroll' }} >{location.replaceAll('"', '')}</TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </Paper>
-                </span>
-                <span className="life-list-right">
-                    {/* Todo add cool underlines */}
-                    <h2>My Bird Watching Destinations</h2>
-
-                    <div className="world-map">
+        <>
+            {zoomWorldMap &&
+                <div className="img-lightbox" onClick={() => setZoomWorldMap(false)}>
+                    <div className="beeg-background" />
+                    <div className='beeg-world-map' onClick={() => setZoomWorldMap(true)}>
                         <img title="Blank SVG World Map" alt="SVG World Map Using Robinson Projection" src="/world.svg" className="img-responsive" />
                     </div>
+                </div>
+            }
+            <span className="life-list">
+                <WebsiteHeader />
+                <span className="life-list-container">
+                    <span className="life-list-left">
+                        <h2>My Bird Watching Life List!</h2>
+                        <Paper >
+                            <TableContainer sx={{ maxHeight: '85vh' }} >
+                                <Table stickyHeader aria-label="simple table" size="small">
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell style={{ color: 'white', backgroundColor: "#333" }}><b>No.</b></TableCell>
+                                            <TableCell style={{ color: 'white', backgroundColor: "#555" }}><b>Name</b></TableCell>
+                                            <TableCell style={{ color: 'white', backgroundColor: "#333" }}><b>Date</b></TableCell>
+                                            <TableCell style={{ color: 'white', backgroundColor: "#555" }}><b>Location</b></TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {lifeListArray.map(({ number, name, date, location }, index) => (
+                                            <TableRow style={{ backgroundColor: index % 2 === 0 ? '#eeeeeeff' : '' }} key={name}>
+                                                <TableCell component="th" scope="row">{number}</TableCell>
+                                                <TableCell ><b>{name}</b></TableCell>
+                                                <TableCell >{date.replaceAll('"', '')}</TableCell>
+                                                <TableCell style={{ overflow: 'scroll' }} >{location.replaceAll('"', '')}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </Paper>
+                    </span>
+                    <span className="life-list-right">
+                        {/* Todo add cool underlines */}
+                        <h2>My Bird Watching Destinations</h2>
 
+                        <div className='world-map' onClick={() => setZoomWorldMap(true)}>
+                            <img title="Blank SVG World Map" alt="SVG World Map Using Robinson Projection" src="/world.svg" className="img-responsive" />
+                        </div>
+
+                    </span>
                 </span>
-            </span>
-        </span >
+            </span >
+        </>
     );
 
 }
