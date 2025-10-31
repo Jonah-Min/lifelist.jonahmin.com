@@ -79,11 +79,11 @@ export default function LifeList() {
 
                                             let birdName = <b>{name}</b>;
                                             if (birdCodesMap[birdKey]) {
-                                                birdName = (
-                                                    <a className="bird-link" href={`https://ebird.org/species/${birdCodesMap[birdKey]}`} target='_blank'>
-                                                        {birdName}
-                                                    </a>
-                                                );
+                                                birdName = <a className="bird-link" href={`https://ebird.org/species/${birdCodesMap[birdKey]}`} target='_blank'>
+                                                    {birdName}
+                                                </a>;
+                                            } else if (Object.keys(birdCodesMap).length > 0 && !birdCodesMap[birdKey]) {
+                                                console.log("No bird code found for: ", name);
                                             }
 
                                             let birdImageLink = null;
