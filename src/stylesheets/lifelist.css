@@ -12,6 +12,12 @@
 
 .life-list-left h2 {
     text-align: left;
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 0.2em;
+    background-position: 0 105%;
+    margin-bottom: 8px;
+    width: fit-content;
 }
 
 .life-list-left {
@@ -32,6 +38,11 @@
 .life-list-right h2 {
     text-align: center;
     width: fit-content;
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 0.2em;
+    background-position: 0 105%;
+    margin-bottom: 8px;
 }
 
 .img-responsive {
