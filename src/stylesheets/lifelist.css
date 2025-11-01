@@ -158,6 +158,11 @@
     width: 100%;
 }
 
+tr:hover {
+    outline: 1px solid rgb(56, 157, 211) !important;
+    outline-offset: -1px;
+}
+
 @media (max-width: 850px) {
     .life-list-header {
         align-items: center;

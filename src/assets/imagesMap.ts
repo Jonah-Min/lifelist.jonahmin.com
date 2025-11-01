@@ -260,4 +260,8 @@ export default {
   "northernwaterthrush": "/birdPhotos/northernwaterthrush.jpg",
   "blackbilledmagpie": "/birdPhotos/blackbilledmagpie.jpg",
   "clarksnutcracker": "/birdPhotos/clarksnutcracker.jpg",
+  "greattailedgrackle": "/birdPhotos/greattailedgrackle.jpg",
+  "wildturkey": "/birdPhotos/wildturkey.jpg",
+  "tuftedtitmouse": "/birdPhotos/tuftedtitmouse.jpg",
+  "whitethroatedsparrow": "/birdPhotos/whitethroatedsparrow.jpg",
 };
