@@ -18,19 +18,20 @@
     background-position: 0 105%;
     margin-bottom: 8px;
     width: fit-content;
+    font-size: 20px;
 }
 
 .life-list-left {
     display: flex; 
     flex-direction: column;
-    flex-grow: 55;
+    flex-grow: 6;
     flex-basis: 0;
 }
 
 .life-list-right {
     display: flex; 
     flex-direction: column;
-    flex-grow: 45;
+    flex-grow: 4;
     flex-basis: 0;
     align-items: center;
 }
@@ -43,6 +44,7 @@
     background-size: 100% 0.2em;
     background-position: 0 105%;
     margin-bottom: 8px;
+    font-size: 20px;
 }
 
 .img-responsive {
@@ -121,11 +123,56 @@
 }
 
 .bird-table {
-    max-height: 80vh;
+    max-height: 81vh;
     border-radius: 5px;
 }
 
+.life-list-header {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 8px;
+}
+
+.life-list-header h2 {
+    margin-right: 12px;
+}
+
+.search {
+    max-width: 30ch;
+    flex-grow: 1;
+    flex-basis: 0;
+    width: auto;
+    margin-bottom: 4px;
+    margin-bottom: 6px !important;
+}
+
+.bird-name,
+.bird-date,
+.bird-location {
+    padding-left: 8px !important;
+}
+
 @media (max-width: 850px) {
+    .life-list-header {
+        align-items: center;
+        flex-direction: column;
+        padding-right: 0px;
+        width: 100%;
+    }
+
+    .life-list-header h2 {
+        margin: 0;
+        font-size: 26px;
+    }
+
+    .search {
+        width: 92%;
+        max-width: 92%;
+        text-align: center;
+    }
+
     .life-list {
         padding: 0 2% 0 2%;
     }
@@ -156,7 +203,7 @@
     }
 
     .bird-table {
-        max-height: 76vh;
+        max-height: 72vh;
         border-radius: 5px;
     }
 }

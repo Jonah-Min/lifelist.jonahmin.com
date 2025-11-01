@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
+import debounce from '../utils/debounce';
 
 import WebsiteHeader from '../components/WebsiteHeader';
 import Table from '@mui/material/Table';
@@ -7,6 +8,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 
 import BirdImages from '../assets/imagesMap';
@@ -14,109 +16,140 @@ import BirdImages from '../assets/imagesMap';
 import '../stylesheets/lifelist.css';
 
 export default function LifeList() {
-    const [lifeListData, setLifeList] = useState();
-    const [ebirdCodeData, setEbirdCodeData] = useState();
-    const [zoomWorldMap, setZoomWorldMap] = useState(false);
+  const [lifeListData, setLifeList] = useState();
+  const [ebirdCodeData, setEbirdCodeData] = useState();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [zoomWorldMap, setZoomWorldMap] = useState(false);
 
-    fetch('/LifeList.csv')
-        .then(response => response.text())
-        .then(responseText => setLifeList(responseText));
+  const formatBirdName = (birdName) => {
+    return birdName.replaceAll(/[^\w]/g, "").toLowerCase();
+  };
 
-    const lifeListArray = lifeListData ?
-        lifeListData.split('\r\n').slice(1).map(entry => {
-            const row = entry.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-            return {
-                number: row[0],
-                name: row[1],
-                date: row[2],
-                location: row[3]
-            };
-        })
-        : [];
+  fetch('/LifeList.csv')
+    .then(response => response.text())
+    .then(responseText => setLifeList(responseText));
 
-    fetch('/eBirdBirdCodes.csv')
-        .then(response => response.text())
-        .then(responseText => setEbirdCodeData(responseText));
+  const lifeListArray = useMemo(() => {
+    if (!lifeListData) return [];
 
-    const birdCodesMap = ebirdCodeData ?
-        ebirdCodeData.split('\r\n').slice(1).reduce((acc, entry) => {
-            const row = entry.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-            const [birdName, birdCode] = row;
-            acc[birdName.replaceAll(/[^\w]/g, "").toLowerCase()] = birdCode;
-            return acc;
-        }, {})
-        : {};
+    return lifeListData.split('\r\n').slice(1).reduce((acc, entry) => {
+      const [number, name, date, location] = entry.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
 
-    return (
-        <>
-            {zoomWorldMap &&
-                <div className="img-lightbox" onClick={() => setZoomWorldMap(false)}>
-                    <div className="beeg-background" />
-                    <div className='beeg-world-map' onClick={() => setZoomWorldMap(true)}>
-                        <img title="Blank SVG World Map" alt="SVG World Map Using Robinson Projection" src="/world.svg" className="img-responsive" />
-                    </div>
-                </div>
-            }
-            <span className="life-list">
-                <WebsiteHeader />
-                <span className="life-list-container">
-                    <span className="life-list-left">
-                        <h2>Bird Watching Life List</h2>
-                        <Paper >
-                            <TableContainer className="bird-table" >
-                                <Table stickyHeader aria-label="simple table" size="small">
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell style={{ color: 'white', backgroundColor: "#333" }}><b>No.</b></TableCell>
-                                            <TableCell style={{ color: 'white', backgroundColor: "#555" }}><b>Name</b></TableCell>
-                                            <TableCell style={{ color: 'white', backgroundColor: "#333" }}><b>Date</b></TableCell>
-                                            <TableCell style={{ color: 'white', backgroundColor: "#555" }}><b>Location</b></TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {lifeListArray.map(({ number, name, date, location }, index) => {
-                                            const birdKey = name.replaceAll(/[^\w]/g, "").toLowerCase();
+      if (searchTerm && !formatBirdName(name).includes(formatBirdName(searchTerm))) {
+        return acc;
+      }
 
-                                            let birdName = <b>{name}</b>;
-                                            if (birdCodesMap[birdKey]) {
-                                                birdName = <a className="bird-link" href={`https://ebird.org/species/${birdCodesMap[birdKey]}`} target='_blank'>
-                                                    {birdName}
-                                                </a>;
-                                            } else if (Object.keys(birdCodesMap).length > 0 && !birdCodesMap[birdKey]) {
-                                                console.log("No bird code found for: ", name);
-                                            }
+      acc.push({ number, name, date, location });
+      return acc;
+    }, []);
+  }, [lifeListData, searchTerm]);
 
-                                            let birdImageLink = null;
-                                            if (BirdImages[birdKey]) {
-                                                birdImageLink = <a className='bird-image' href={BirdImages[birdKey]} target="_blank">📷</a>;
-                                            }
+  fetch('/eBirdBirdCodes.csv')
+    .then(response => response.text())
+    .then(responseText => setEbirdCodeData(responseText));
 
-                                            return (
-                                                <TableRow style={{ backgroundColor: index % 2 === 0 ? '#eeeeeeff' : '' }} key={name}>
-                                                    <TableCell component="th" scope="row">{number}</TableCell>
-                                                    <TableCell className="bird-name" >{birdName}{birdImageLink}</TableCell>
-                                                    <TableCell >{date.replaceAll('"', '')}</TableCell>
-                                                    <TableCell style={{ overflow: 'scroll' }} >{location.replaceAll('"', '')}</TableCell>
-                                                </TableRow>
-                                            );
-                                        })}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </Paper>
-                    </span>
-                    <span className="life-list-right">
-                        {/* Todo add cool underlines */}
-                        <h2>My Bird Watching Destinations</h2>
+  const birdCodesMap = useMemo(() => {
+    if (!ebirdCodeData) return {};
 
-                        <div className='world-map' onClick={() => setZoomWorldMap(true)}>
-                            <img title="Bird Watching World Map" alt="Bird Watching Destinations World Map" src="/world.svg" className="img-responsive" />
-                        </div>
+    return ebirdCodeData.split('\r\n').slice(1).reduce((acc, entry) => {
+      const row = entry.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+      const [birdName, birdCode] = row;
+      acc[formatBirdName(birdName)] = birdCode;
+      return acc;
+    }, {});
+  }, [ebirdCodeData]);
 
-                    </span>
-                </span>
-            </span >
-        </>
-    );
+  return (
+    <>
+      {zoomWorldMap &&
+        <div className="img-lightbox" onClick={() => setZoomWorldMap(false)}>
+          <div className="beeg-background" />
+          <div className='beeg-world-map' onClick={() => setZoomWorldMap(true)}>
+            <img
+              title="Blank SVG World Map"
+              alt="SVG World Map Using Robinson Projection"
+              src="/world.svg"
+              className="img-responsive"
+            />
+          </div>
+        </div>
+      }
+      <span className="life-list">
+        <WebsiteHeader />
+        <span className="life-list-container">
+          <span className="life-list-left">
+            <div className="life-list-header">
+              <h2>Bird Watching Life List</h2>
+              <TextField
+                id="standard-helperText"
+                className="search"
+                label="Search"
+                size="small"
+                variant="standard"
+                onChange={debounce(({ target: { value } }) => setSearchTerm(value), 100)}
+              />
+            </div>
+            <Paper >
+              <TableContainer className="bird-table" >
+                <Table stickyHeader aria-label="simple table" size="small">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell style={{ color: 'white', backgroundColor: "#333" }}><b>No.</b></TableCell>
+                      <TableCell style={{ color: 'white', backgroundColor: "#555" }}><b>Name</b></TableCell>
+                      <TableCell style={{ color: 'white', backgroundColor: "#333" }}><b>Date</b></TableCell>
+                      <TableCell style={{ color: 'white', backgroundColor: "#555" }}><b>Location</b></TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {
+                      !lifeListArray.length &&
+                      <TableRow >
+                        <TableCell component="th" scope="row"><b>{`No bird matches "${searchTerm}"`}</b></TableCell>
+                      </TableRow>
+                    }
+                    {lifeListArray.map(({ number, name, date, location }, index) => {
+                      const birdKey = formatBirdName(name);
+
+                      let birdName = <b>{name}</b>;
+                      if (birdCodesMap[birdKey]) {
+                        birdName = <a className="bird-link" href={`https://ebird.org/species/${birdCodesMap[birdKey]}`} target='_blank'>
+                          {birdName}
+                        </a>;
+                      } else if (Object.keys(birdCodesMap).length > 0 && !birdCodesMap[birdKey]) {
+                        console.log("No bird code found for: ", name);
+                      }
+
+                      let birdImageLink = null;
+                      if (BirdImages[birdKey]) {
+                        birdImageLink = <a className='bird-image' href={BirdImages[birdKey]} target="_blank">📷</a>;
+                      }
+
+                      return (
+                        <TableRow style={{ backgroundColor: index % 2 === 0 ? '#eeeeeeff' : '' }} key={name}>
+                          <TableCell className="bird-number" component="th" scope="row">{number}</TableCell>
+                          <TableCell className="bird-name" >{birdName}{birdImageLink}</TableCell>
+                          <TableCell className="bird-date">{date.replaceAll('"', '')}</TableCell>
+                          <TableCell className="bird-location" style={{ overflow: 'scroll' }} >{location.replaceAll('"', '')}</TableCell>
+                        </TableRow>
+                      );
+                    })}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Paper>
+          </span>
+          <span className="life-list-right">
+            {/* Todo add cool underlines */}
+            <h2>My Bird Watching Destinations</h2>
+
+            <div className='world-map' onClick={() => setZoomWorldMap(true)}>
+              <img title="Bird Watching World Map" alt="Bird Watching Destinations World Map" src="/world.svg" className="img-responsive" />
+            </div>
+
+          </span>
+        </span>
+      </span >
+    </>
+  );
 
 }
