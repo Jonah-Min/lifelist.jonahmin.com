@@ -154,6 +154,10 @@
     padding-left: 8px !important;
 }
 
+.life-list-paper {
+    width: 100%;
+}
+
 @media (max-width: 850px) {
     .life-list-header {
         align-items: center;
@@ -168,8 +172,8 @@
     }
 
     .search {
-        width: 92%;
-        max-width: 92%;
+        width: 98%;
+        max-width: 98%;
         text-align: center;
     }
 

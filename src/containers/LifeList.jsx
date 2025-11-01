@@ -59,6 +59,8 @@ export default function LifeList() {
     }, {});
   }, [ebirdCodeData]);
 
+  const photoCheck = {};
+
   return (
     <>
       {zoomWorldMap &&
@@ -89,7 +91,7 @@ export default function LifeList() {
                 onChange={debounce(({ target: { value } }) => setSearchTerm(value), 100)}
               />
             </div>
-            <Paper >
+            <Paper className="life-list-paper">
               <TableContainer className="bird-table" >
                 <Table stickyHeader aria-label="simple table" size="small">
                   <TableHead>
@@ -121,8 +123,11 @@ export default function LifeList() {
 
                       let birdImageLink = null;
                       if (BirdImages[birdKey]) {
+                        photoCheck[birdKey] = true;
                         birdImageLink = <a className='bird-image' href={BirdImages[birdKey]} target="_blank">📷</a>;
                       }
+
+                      console.log(Object.keys(photoCheck).length);
 
                       return (
                         <TableRow style={{ backgroundColor: index % 2 === 0 ? '#eeeeeeff' : '' }} key={name}>
