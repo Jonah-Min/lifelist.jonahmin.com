@@ -258,4 +258,6 @@ export default {
   "bananaquit": "/birdPhotos/bananaquit.jpg",
   "yellowshoulderedblackbird": "/birdPhotos/yellowshoulderedblackbird.jpg",
   "northernwaterthrush": "/birdPhotos/northernwaterthrush.jpg",
+  "blackbilledmagpie": "/birdPhotos/blackbilledmagpie.jpg",
+  "clarksnutcracker": "/birdPhotos/clarksnutcracker.jpg",
 };
