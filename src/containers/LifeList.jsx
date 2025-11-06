@@ -65,12 +65,11 @@ export default function LifeList() {
     <>
       {zoomWorldMap &&
         <div className="img-lightbox" onClick={() => setZoomWorldMap(false)}>
-          <div className="beeg-background" />
           <div className='beeg-world-map' onClick={() => setZoomWorldMap(true)}>
             <img
               title="Blank SVG World Map"
               alt="SVG World Map Using Robinson Projection"
-              src="/world.svg"
+              src="/myVisitedPlaces.jpg"
               className="img-responsive"
             />
           </div>
@@ -148,7 +147,7 @@ export default function LifeList() {
             <h2>My Bird Watching Destinations</h2>
 
             <div className='world-map' onClick={() => setZoomWorldMap(true)}>
-              <img title="Bird Watching World Map" alt="Bird Watching Destinations World Map" src="/world.svg" className="img-responsive" />
+              <img title="Bird Watching World Map" alt="Bird Watching Destinations World Map" src="/myVisitedPlaces.jpg" className="img-responsive" />
             </div>
 
           </span>

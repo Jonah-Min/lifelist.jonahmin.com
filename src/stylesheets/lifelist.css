@@ -48,15 +48,13 @@
 }
 
 .img-responsive {
+    border-radius: 5px;
     max-width: 100%;
-    padding: 40px 0 40px 0;
 }
 
 .world-map {
+    margin-top: 1px;
     cursor: zoom-in;
-    background-color: #abd5df;
-    border-radius: 5px;
-    width: 100%;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
@@ -81,17 +79,7 @@
 	}
 }
 
-.beeg-background {
-    background-color: #333;
-    opacity: 50%;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    z-index: 1000;
-}
-
 .beeg-world-map {
-    background-color: #abd5df;
     width: 96%;
     position: absolute;
     z-index: 10000;
