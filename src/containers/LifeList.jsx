@@ -65,6 +65,7 @@ export default function LifeList() {
     <>
       {zoomWorldMap &&
         <div className="img-lightbox" onClick={() => setZoomWorldMap(false)}>
+          <div className="beeg-background" />
           <div className='beeg-world-map' onClick={() => setZoomWorldMap(true)}>
             <img
               title="Blank SVG World Map"

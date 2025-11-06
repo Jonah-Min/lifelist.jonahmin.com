@@ -79,6 +79,15 @@
 	}
 }
 
+.beeg-background {
+    background-color: #333;
+    opacity: 25%;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 1000;
+}
+
 .beeg-world-map {
     width: 96%;
     position: absolute;
