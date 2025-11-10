@@ -264,4 +264,7 @@ export default {
   "wildturkey": "/birdPhotos/wildturkey.jpg",
   "tuftedtitmouse": "/birdPhotos/tuftedtitmouse.jpg",
   "whitethroatedsparrow": "/birdPhotos/whitethroatedsparrow.jpg",
+  "longtailedduck": "/birdPhotos/longtailedduck.png",
+  "commongoldeneye": "/birdPhotos/commongoldeneye.jpg",
+  "brant": "/birdPhotos/brant.jpg"
 };
