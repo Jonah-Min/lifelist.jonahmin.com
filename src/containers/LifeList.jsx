@@ -158,7 +158,6 @@ export default function LifeList() {
             </Paper>
           </span>
           <span className="life-list-right">
-            {/* Todo add cool underlines */}
             <h2>My Bird Watching Destinations</h2>
 
             <div className='world-map' onClick={() => {

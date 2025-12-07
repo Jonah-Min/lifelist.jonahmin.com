@@ -55,6 +55,7 @@
 .lightbox-image {
     max-height: 95%;
     max-width: 95%;
+    border-radius: 7px;
 }
 
 .world-map {
