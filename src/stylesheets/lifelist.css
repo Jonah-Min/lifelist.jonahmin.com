@@ -52,6 +52,11 @@
     max-width: 100%;
 }
 
+.lightbox-image {
+    max-height: 95%;
+    max-width: 95%;
+}
+
 .world-map {
     margin-top: 1px;
     cursor: zoom-in;
@@ -79,16 +84,16 @@
 	}
 }
 
-.beeg-background {
+.lightbox-background {
     background-color: #333;
-    opacity: 25%;
+    opacity: 75%;
     height: 100%;
     width: 100%;
     position: absolute;
     z-index: 1000;
 }
 
-.beeg-world-map {
+.lightbox-image-wrapper {
     position: absolute;
     z-index: 10000;
     opacity: 1;
@@ -96,7 +101,11 @@
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in;
 	animation-duration: .4s;
-    max-width: 96%;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .bird-link {
@@ -113,6 +122,7 @@
 .bird-image {
     text-decoration: none;
     font-size: 16px;
+    cursor: pointer;
 }
 
 .bird-link:hover {

@@ -19,7 +19,7 @@ export default function LifeList() {
   const [lifeListData, setLifeList] = useState();
   const [ebirdCodeData, setEbirdCodeData] = useState();
   const [searchTerm, setSearchTerm] = useState('');
-  const [zoomWorldMap, setZoomWorldMap] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const formatBirdName = (birdName) => {
     return birdName.replaceAll(/[^\w]/g, "").toLowerCase();
@@ -63,18 +63,18 @@ export default function LifeList() {
 
   return (
     <>
-      {zoomWorldMap &&
-        <div className="img-lightbox" onClick={() => setZoomWorldMap(false)}>
-          <div className="beeg-background" />
-          <div className='beeg-world-map' onClick={() => setZoomWorldMap(true)}>
+      {selectedImage &&
+        <div className="img-lightbox" onClick={() => setSelectedImage(null)}>
+          <div className="lightbox-background" />
+          <div className='lightbox-image-wrapper'>
             <img
               title="Blank SVG World Map"
               alt="SVG World Map Using Robinson Projection"
-              src="/myVisitedPlaces.jpg"
-              className="img-responsive"
+              src={selectedImage}
+              className="lightbox-image"
             />
           </div>
-        </div>
+        </div >
       }
       <span className="life-list">
         <WebsiteHeader />
@@ -124,10 +124,8 @@ export default function LifeList() {
                       let birdImageLink = null;
                       if (BirdImages[birdKey]) {
                         photoCheck[birdKey] = true;
-                        birdImageLink = <a className='bird-image' href={BirdImages[birdKey]} target="_blank">📷</a>;
+                        birdImageLink = <a className='bird-image' onClick={() => setSelectedImage(BirdImages[birdKey])}>📷</a>;
                       }
-
-                      console.log(Object.keys(photoCheck).length);
 
                       return (
                         <TableRow style={{ backgroundColor: index % 2 === 0 ? '#eeeeeeff' : '' }} key={name}>
@@ -147,7 +145,7 @@ export default function LifeList() {
             {/* Todo add cool underlines */}
             <h2>My Bird Watching Destinations</h2>
 
-            <div className='world-map' onClick={() => setZoomWorldMap(true)}>
+            <div className='world-map' onClick={() => setSelectedImage('/myVisitedPlaces.jpg')}>
               <img title="Bird Watching World Map" alt="Bird Watching Destinations World Map" src="/myVisitedPlaces.jpg" className="img-responsive" />
             </div>
 
