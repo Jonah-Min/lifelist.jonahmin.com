@@ -20,7 +20,7 @@ export default function LifeList() {
   const [ebirdCodeData, setEbirdCodeData] = useState();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedImage, setSelectedImage] = useState(null);
-  const [selectedImageAlt, setSelectedImageAlt] = useState('');
+  const [selectedImageName, setSelectedImageName] = useState('');
 
   const formatBirdName = (birdName) => {
     return birdName.replaceAll(/[^\w]/g, "").toLowerCase();
@@ -69,14 +69,14 @@ export default function LifeList() {
           className="img-lightbox"
           onClick={() => {
             setSelectedImage(null);
-            setSelectedImageAlt('');
+            setSelectedImageName('');
           }
           }>
           <div className="lightbox-background" />
           <div className='lightbox-image-wrapper'>
             <img
-              title={selectedImageAlt}
-              alt={selectedImageAlt}
+              title={selectedImageName}
+              alt={selectedImageName}
               src={selectedImage}
               className="lightbox-image"
             />
@@ -136,7 +136,7 @@ export default function LifeList() {
                             className='bird-image'
                             onClick={() => {
                               setSelectedImage(BirdImages[birdKey]);
-                              setSelectedImageAlt(name);
+                              setSelectedImageName(name);
                             }}>
                             📷
                           </a>
@@ -161,7 +161,10 @@ export default function LifeList() {
             {/* Todo add cool underlines */}
             <h2>My Bird Watching Destinations</h2>
 
-            <div className='world-map' onClick={() => setSelectedImage('/myVisitedPlaces.jpg')}>
+            <div className='world-map' onClick={() => {
+              setSelectedImage('/myVisitedPlaces.jpg');
+              setSelectedImageName('Bird Watching World Map');
+            }}>
               <img title="Bird Watching World Map" alt="Bird Watching Destinations World Map" src="/myVisitedPlaces.jpg" className="img-responsive" />
             </div>
 
