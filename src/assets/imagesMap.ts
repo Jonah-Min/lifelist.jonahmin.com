@@ -60,7 +60,7 @@ export default {
   "chuckwillswidow": "/birdPhotos/chuckwillswidow.jpg",
   "cinnamonteal": "/birdPhotos/cinnamonteal.jpg",
   "clapperrail": "/birdPhotos/clapperrail.jpg",
-  "commoneider": "/birdPhotos/commoneider.jpg",
+  "commoneider": "/birdPhotos/commoneider.jpeg",
   "commongrackle": "/birdPhotos/commongrackle.jpg",
   "commonkingfisher": "/birdPhotos/commonkingfisher.jpg",
   "commonpauraque": "/birdPhotos/commonpauraque.jpg",
@@ -264,7 +264,16 @@ export default {
   "wildturkey": "/birdPhotos/wildturkey.jpg",
   "tuftedtitmouse": "/birdPhotos/tuftedtitmouse.jpg",
   "whitethroatedsparrow": "/birdPhotos/whitethroatedsparrow.jpg",
-  "longtailedduck": "/birdPhotos/longtailedduck.png",
+  "longtailedduck": "/birdPhotos/longtailedduck.jpg",
   "commongoldeneye": "/birdPhotos/commongoldeneye.jpg",
-  "brant": "/birdPhotos/brant.jpg"
+  "brant": "/birdPhotos/brant.jpg",
+  "commonloon": "/birdPhotos/commonloon.jpg",
+  "whitewingedscoter": "/birdPhotos/whitewingedscoter.jpeg",
+  "northerngannet": "birdPhotos/northerngannet.jpeg",
+  "blackleggedkittiwake": "birdPhotos/blackleggedkittiwake.jpeg",
+  "greatshearwater": "birdPhotos/greatshearwater.jpeg",
+  "greatblackbackedgull": "birdPhotos/greatblackbackedgull.jpeg",
+  "sootyshearwater": "birdPhotos/sootyshearwater.jpeg",
+  "dovekie": "birdPhotos/dovekie.jpeg",
+  "bonapartesgull": "birdPhotos/bonapartesgull.jpeg"
 };
