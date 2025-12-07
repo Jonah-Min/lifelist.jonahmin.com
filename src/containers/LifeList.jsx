@@ -20,6 +20,7 @@ export default function LifeList() {
   const [ebirdCodeData, setEbirdCodeData] = useState();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImageAlt, setSelectedImageAlt] = useState('');
 
   const formatBirdName = (birdName) => {
     return birdName.replaceAll(/[^\w]/g, "").toLowerCase();
@@ -64,12 +65,18 @@ export default function LifeList() {
   return (
     <>
       {selectedImage &&
-        <div className="img-lightbox" onClick={() => setSelectedImage(null)}>
+        <div
+          className="img-lightbox"
+          onClick={() => {
+            setSelectedImage(null);
+            setSelectedImageAlt('');
+          }
+          }>
           <div className="lightbox-background" />
           <div className='lightbox-image-wrapper'>
             <img
-              title="Blank SVG World Map"
-              alt="SVG World Map Using Robinson Projection"
+              title={selectedImageAlt}
+              alt={selectedImageAlt}
               src={selectedImage}
               className="lightbox-image"
             />
@@ -124,7 +131,16 @@ export default function LifeList() {
                       let birdImageLink = null;
                       if (BirdImages[birdKey]) {
                         photoCheck[birdKey] = true;
-                        birdImageLink = <a className='bird-image' onClick={() => setSelectedImage(BirdImages[birdKey])}>📷</a>;
+                        birdImageLink = (
+                          <a
+                            className='bird-image'
+                            onClick={() => {
+                              setSelectedImage(BirdImages[birdKey]);
+                              setSelectedImageAlt(name);
+                            }}>
+                            📷
+                          </a>
+                        );
                       }
 
                       return (
