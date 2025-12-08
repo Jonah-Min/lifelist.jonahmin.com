@@ -275,5 +275,6 @@ export default {
   "greatblackbackedgull": "birdPhotos/greatblackbackedgull.jpeg",
   "sootyshearwater": "birdPhotos/sootyshearwater.jpeg",
   "dovekie": "birdPhotos/dovekie.jpeg",
-  "bonapartesgull": "birdPhotos/bonapartesgull.jpeg"
+  "bonapartesgull": "birdPhotos/bonapartesgull.jpeg",
+  "greatskua": "birdPhotos/greatskua.jpeg"
 };
