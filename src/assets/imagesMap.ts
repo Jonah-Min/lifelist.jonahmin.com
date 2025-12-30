@@ -276,5 +276,17 @@ export default {
   "sootyshearwater": "birdPhotos/sootyshearwater.jpeg",
   "dovekie": "birdPhotos/dovekie.jpeg",
   "bonapartesgull": "birdPhotos/bonapartesgull.jpeg",
-  "greatskua": "birdPhotos/greatskua.jpeg"
+  "greatskua": "birdPhotos/greatskua.jpeg",
+  "blackheadedgull": "birdPhotos/blackheadedgull.jpg",
+  "eurasianblackbird": "birdPhotos/eurasianblackbird.jpg",
+  "eurasianblackcap": "birdPhotos/eurasianblackcap.jpg",
+  "eurasiancragmartin": "birdPhotos/eurasiancragmartin.jpg",
+  "eurasiangriffon": "birdPhotos/eurasiangriffon.jpg",
+  "europeanrobin": "birdPhotos/europeanrobin.jpg",
+  "goldcrest": "birdPhotos/goldcrest.jpg",
+  "indiansilverbill": "birdPhotos/indiansilverbill.jpg",
+  "roseringedparakeet": "birdPhotos/roseringedparakeet.jpg",
+  "shorttoedtreecreeper": "birdPhotos/shorttoedtreecreeper.jpg",
+  "whitewagtail": "birdPhotos/whitewagtail.jpg",
+  "yellowleggedgull": "birdPhotos/yellowleggedgull.jpg",
 };
