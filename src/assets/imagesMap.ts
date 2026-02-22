@@ -292,5 +292,9 @@ export default {
   "crimsoncollaredgrosbeak": "birdPhotos/crimsoncollaredgrosbeak.jpg",
   "mottledduck": "birdPhotos/mottledduck.jpg",
   "whitefacedibis": "birdPhotos/whitefacedibis.jpg",
-  "burrowingowl": "birdPhotos/burrowingowl.jpg"
+  "burrowingowl": "birdPhotos/burrowingowl.jpg",
+  "blackchinnedhummingbird": "birdPhotos/blackchinnedhummingbird.jpg",
+  "curvebilledthrasher": "birdPhotos/curvebilledthrasher.jpg",
+  "incadove": "birdPhotos/incadove.jpg",
+  "tropicalkingbird": "birdPhotos/tropicalkingbird.jpg",
 };
