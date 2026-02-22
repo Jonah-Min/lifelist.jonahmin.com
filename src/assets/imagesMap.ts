@@ -289,4 +289,8 @@ export default {
   "shorttoedtreecreeper": "birdPhotos/shorttoedtreecreeper.jpg",
   "whitewagtail": "birdPhotos/whitewagtail.jpg",
   "yellowleggedgull": "birdPhotos/yellowleggedgull.jpg",
+  "crimsoncollaredgrosbeak": "birdPhotos/crimsoncollaredgrosbeak.jpg",
+  "mottledduck": "birdPhotos/mottledduck.jpg",
+  "whitefacedibis": "birdPhotos/whitefacedibis.jpg",
+  "burrowingowl": "birdPhotos/burrowingowl.jpg"
 };
