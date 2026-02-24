@@ -297,4 +297,12 @@ export default {
   "curvebilledthrasher": "birdPhotos/curvebilledthrasher.jpg",
   "incadove": "birdPhotos/incadove.jpg",
   "tropicalkingbird": "birdPhotos/tropicalkingbird.jpg",
+  "americanwigeon": "birdPhotos/americanwigeon.jpg",
+  "blackskimmer": "birdPhotos/blackskimmer.jpg",
+  "caspiantern": "birdPhotos/caspiantern.jpg",
+  "commongallinule": "birdPhotos/commongallinule.jpg",
+  "gullbilledtern": "birdPhotos/gullbilledtern.jpg",
+  "longbilledcurlew": "birdPhotos/longbilledcurlew.jpg",
+  "mangroveyellowwarbler": "birdPhotos/mangroveyellowwarbler.jpg",
+  "sora": "birdPhotos/sora.jpg",
 };
