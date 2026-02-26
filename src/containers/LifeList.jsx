@@ -50,25 +50,38 @@ export default function LifeList() {
     const onKeyDown = (e) => {
       if (!selectedImage) return;
 
-      if (imagesList.current.includes(selectedImage)) {
+      const selectedImageIndex = imagesList.current.findIndex(img => img.name === selectedImageName);
+      if (selectedImageIndex !== -1) {
         const { key } = e;
-        const selectedImageIndex = imagesList.current.indexOf(selectedImage);
 
         switch (key) {
           case 'ArrowRight': {
             if (selectedImageIndex === imagesList.current.length - 1) {
-              setSelectedImage(imagesList.current[0]);
+              const { name, image } = imagesList.current[0];
+              setSelectedImage(image);
+              setSelectedImageName(name);
             } else {
-              setSelectedImage(imagesList.current[selectedImageIndex + 1]);
+              const { name, image } = imagesList.current[selectedImageIndex + 1];
+              setSelectedImage(image);
+              setSelectedImageName(name);
             }
             return;
           }
           case 'ArrowLeft': {
             if (selectedImageIndex === 0) {
-              setSelectedImage(imagesList.current[imagesList.current.length - 1]);
+              const { name, image } = imagesList.current[imagesList.current.length - 1];
+              setSelectedImage(image);
+              setSelectedImageName(name);
             } else {
-              setSelectedImage(imagesList.current[selectedImageIndex - 1]);
+              const { name, image } = imagesList.current[selectedImageIndex - 1];
+              setSelectedImage(image);
+              setSelectedImageName(name);
             }
+            return;
+          }
+          case 'Escape': {
+            setSelectedImage(null);
+            setSelectedImageName(null);
             return;
           }
           default: {
@@ -83,7 +96,7 @@ export default function LifeList() {
     return () => {
       document.removeEventListener('keydown', onKeyDown);
     };
-  }, [selectedImage]);
+  }, [selectedImage, selectedImageName]);
 
   fetch('/eBirdBirdCodes.csv')
     .then(response => response.text())
@@ -100,7 +113,20 @@ export default function LifeList() {
     }, {});
   }, [ebirdCodeData]);
 
-  console.log(imagesList.current);
+  const selectedImageIndex = imagesList.current.findIndex(img => img.name === selectedImageName);
+
+  let nextImage = null;
+  let prevImage = null;
+
+  if (selectedImageName && selectedImageIndex !== -1) {
+    nextImage = selectedImageIndex === imagesList.current.length - 1
+      ? imagesList.current[0].name
+      : imagesList.current[selectedImageIndex + 1].name;
+
+    prevImage = selectedImageIndex === 0
+      ? imagesList.current[imagesList.current.length - 1].name
+      : imagesList.current[selectedImageIndex - 1].name;
+  }
 
   return (
     <>
@@ -121,6 +147,15 @@ export default function LifeList() {
               className="lightbox-image"
             />
           </div>
+          <div className="selected-image-name">
+            {selectedImageName}
+          </div>
+          {nextImage && <div className='lightbox-right-arrow' >
+            {nextImage} &rarr;
+          </div>}
+          {prevImage && <div className='lightbox-left-arrow' >
+            &larr; {prevImage}
+          </div>}
         </div >
       }
       <span className="life-list">
@@ -173,7 +208,10 @@ export default function LifeList() {
                       if (birdImage) {
 
                         if (!imagesList.current.includes(birdImage)) {
-                          imagesList.current.push(birdImage);
+                          imagesList.current.push({
+                            image: birdImage,
+                            name,
+                          });
                         }
 
                         birdImageLink = (
