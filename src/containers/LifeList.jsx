@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import debounce from '../utils/debounce';
 
 import WebsiteHeader from '../components/WebsiteHeader';
@@ -21,6 +21,7 @@ export default function LifeList() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedImageName, setSelectedImageName] = useState('');
+  const imagesList = useRef([]);
 
   const formatBirdName = (birdName) => {
     return birdName.replaceAll(/[^\w]/g, "").toLowerCase();
@@ -45,6 +46,45 @@ export default function LifeList() {
     }, []);
   }, [lifeListData, searchTerm]);
 
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (!selectedImage) return;
+
+      if (imagesList.current.includes(selectedImage)) {
+        const { key } = e;
+        const selectedImageIndex = imagesList.current.indexOf(selectedImage);
+
+        switch (key) {
+          case 'ArrowRight': {
+            if (selectedImageIndex === imagesList.current.length - 1) {
+              setSelectedImage(imagesList.current[0]);
+            } else {
+              setSelectedImage(imagesList.current[selectedImageIndex + 1]);
+            }
+            return;
+          }
+          case 'ArrowLeft': {
+            if (selectedImageIndex === 0) {
+              setSelectedImage(imagesList.current[imagesList.current.length - 1]);
+            } else {
+              setSelectedImage(imagesList.current[selectedImageIndex - 1]);
+            }
+            return;
+          }
+          default: {
+            return;
+          }
+        }
+      }
+    };
+
+    document.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [selectedImage]);
+
   fetch('/eBirdBirdCodes.csv')
     .then(response => response.text())
     .then(responseText => setEbirdCodeData(responseText));
@@ -60,7 +100,7 @@ export default function LifeList() {
     }, {});
   }, [ebirdCodeData]);
 
-  const photoCheck = {};
+  console.log(imagesList.current);
 
   return (
     <>
@@ -129,13 +169,18 @@ export default function LifeList() {
                       }
 
                       let birdImageLink = null;
-                      if (BirdImages[birdKey]) {
-                        photoCheck[birdKey] = true;
+                      const birdImage = BirdImages[birdKey];
+                      if (birdImage) {
+
+                        if (!imagesList.current.includes(birdImage)) {
+                          imagesList.current.push(birdImage);
+                        }
+
                         birdImageLink = (
                           <a
                             className='bird-image'
                             onClick={() => {
-                              setSelectedImage(BirdImages[birdKey]);
+                              setSelectedImage(birdImage);
                               setSelectedImageName(name);
                             }}>
                             📷
