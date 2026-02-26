@@ -115,17 +115,24 @@ export default function LifeList() {
 
   const selectedImageIndex = imagesList.current.findIndex(img => img.name === selectedImageName);
 
-  let nextImage = null;
-  let prevImage = null;
+  let nextImageName = null;
+  let nextImageLink = null;
+  let prevImageName = null;
+  let prevImageLink = null;
 
   if (selectedImageName && selectedImageIndex !== -1) {
-    nextImage = selectedImageIndex === imagesList.current.length - 1
-      ? imagesList.current[0].name
-      : imagesList.current[selectedImageIndex + 1].name;
+    const nextImage = selectedImageIndex === imagesList.current.length - 1
+      ? imagesList.current[0]
+      : imagesList.current[selectedImageIndex + 1];
 
-    prevImage = selectedImageIndex === 0
-      ? imagesList.current[imagesList.current.length - 1].name
-      : imagesList.current[selectedImageIndex - 1].name;
+    const prevImage = selectedImageIndex === 0
+      ? imagesList.current[imagesList.current.length - 1]
+      : imagesList.current[selectedImageIndex - 1];
+
+    nextImageName = nextImage.name;
+    nextImageLink = nextImage.image;
+    prevImageName = prevImage.name;
+    prevImageLink = prevImage.image;
   }
 
   return (
@@ -150,11 +157,19 @@ export default function LifeList() {
           <div className="selected-image-name">
             {selectedImageName}
           </div>
-          {nextImage && <div className='lightbox-right-arrow' >
-            {nextImage} &rarr;
+          {nextImageName && nextImageLink && <div className='lightbox-right-arrow' onClick={(e) => {
+            e.stopPropagation();
+            setSelectedImage(nextImageLink);
+            setSelectedImageName(nextImageName);
+          }} >
+            {nextImageName} &rarr;
           </div>}
-          {prevImage && <div className='lightbox-left-arrow' >
-            &larr; {prevImage}
+          {prevImageName && prevImageLink && <div className='lightbox-left-arrow' onClick={(e) => {
+            e.stopPropagation();
+            setSelectedImage(prevImageLink);
+            setSelectedImageName(prevImageName);
+          }} >
+            &larr; {prevImageName}
           </div>}
         </div >
       }
