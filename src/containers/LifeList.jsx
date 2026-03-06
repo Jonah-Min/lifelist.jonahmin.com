@@ -11,7 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 
-import BirdImages from '../assets/imagesMap';
+import ValidBirdImages from '../assets/validBirdImages';
 
 import '../stylesheets/lifelist.css';
 
@@ -135,6 +135,8 @@ export default function LifeList() {
     prevImageLink = prevImage.image;
   }
 
+  let count = 0;
+
   return (
     <>
       {selectedImage &&
@@ -219,9 +221,10 @@ export default function LifeList() {
                       }
 
                       let birdImageLink = null;
-                      const birdImage = BirdImages[birdKey];
-                      if (birdImage) {
-
+                      if (ValidBirdImages.includes(birdKey)) {
+                        count++;
+                        console.log({ count, ValidBirdImages });
+                        const birdImage = `birdPhotos/${birdKey}.jpg`;
                         if (!imagesList.current.includes(birdImage)) {
                           imagesList.current.push({
                             image: birdImage,
