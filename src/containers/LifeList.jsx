@@ -135,8 +135,6 @@ export default function LifeList() {
     prevImageLink = prevImage.image;
   }
 
-  let count = 0;
-
   return (
     <>
       {selectedImage &&
@@ -222,8 +220,6 @@ export default function LifeList() {
 
                       let birdImageLink = null;
                       if (ValidBirdImages.includes(birdKey)) {
-                        count++;
-                        console.log({ count, ValidBirdImages });
                         const birdImage = `birdPhotos/${birdKey}.jpg`;
                         if (!imagesList.current.includes(birdImage)) {
                           imagesList.current.push({
