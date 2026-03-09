@@ -311,5 +311,14 @@ export default [
   "eurasiancurlew",
   "commonshelduck",
   "commonwoodpigeon",
-  "eurasianbluetit"
+  "eurasianbluetit",
+  "europeanherringgull",
+  "eurasianmagpie",
+  "eurasianmoorhen",
+  "europeanshag",
+  "whitethroateddipper",
+  "mandarinduck",
+  "songthrush",
+  "grayheron",
+  "eurasianjackdaw"
 ];
