@@ -320,5 +320,7 @@ export default [
   "mandarinduck",
   "songthrush",
   "grayheron",
-  "eurasianjackdaw"
+  "eurasianjackdaw",
+  "eurasiansparrowhawk",
+  "longtailedtit"
 ];
